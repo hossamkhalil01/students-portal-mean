@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const studentsRouter = require("./routes/students");
 
@@ -23,5 +24,5 @@ mongoose
   });
 
 app.use(express.json());
-
+app.use(cors());
 app.use("/students", studentsRouter);

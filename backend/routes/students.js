@@ -1,61 +1,54 @@
-const express = require('express');
-const Student = require('../models/Student');
+const express = require("express");
+const Student = require("../models/Student");
 const Router = express.Router();
 
 // return all results
 Router.get("/", async (req, res) => {
-  const students = await Student.all();
-  return res.send({data: students});
+  const students = await Student.find();
+  return res.send({ data: students });
 });
 
 // return student results
-Router.get('/:id', async (req, res) => {
-
+Router.get("/:id", async (req, res) => {
   try {
     const student = await Student.find(req.params.id);
-    return res.send({data: student}).status("200");
-
+    return res.send({ data: student }).status("200");
   } catch (err) {
-    return returnErrorNotFound();
+    return returnErrorNotFound(res);
   }
 });
 
-
-Router.post('/', async (req, res) => {
-
+Router.post("/", async (req, res) => {
   const studentData = req.body;
-  const newStudent = await Post.create(studentData);
-
-  return res.send({data: newStudent}).status("200");
-
-})
-
-
-Router.patch('/:id', (req, res) => {
-
   try {
-
-    const student = await Post.update(req.params.id, req.body);
-    return res.send({data: student}).status("200");
-  }catch(err){
-    return returnErrorNotFound();
+    const newStudent = await Student.create(studentData);
+    return res.send({ data: newStudent }).status("200");
+  } catch (err) {
+    return res.send({ data: null, message: "validation error" }.status("412"));
   }
+});
 
-})
-
-Router.delete('/:id', (req, res) => {
-
-
+Router.patch("/:id", async (req, res) => {
   try {
-    await Student.remove(req.params.id);
+    const student = await Student.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    return res.send({ data: student }).status("200");
+  } catch (err) {
+    return returnErrorNotFound(res);
+  }
+});
+
+Router.delete("/:id", async (req, res) => {
+  try {
+    await Student.findByIdAndDelete(req.params.id);
     return res.send().status("200");
-
   } catch (error) {
-    return returnErrorNotFound();
+    return returnErrorNotFound(res);
   }
-})
+});
 
-const returnErrorNotFound = () => {
-  return res.send({data: null, message:"student not found"}).status("404");
-}
+const returnErrorNotFound = (res) => {
+  return res.send({ data: null, message: "student not found" }).status("404");
+};
 module.exports = Router;
