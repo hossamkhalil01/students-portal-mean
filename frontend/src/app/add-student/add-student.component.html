@@ -1,0 +1,93 @@
+<div class="row justify-content-center">
+  <!-- Button trigger modal -->
+  <button
+    type="button"
+    class="btn btn-primary col-md-1 mt-5"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    Add Student
+  </button>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Student</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="studentForm">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name *</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter the name "
+                id="name"
+                name="name"
+                formControlName="name"
+              />
+              <label for="age" class="form-label">Age *</label>
+              <input
+                type="number"
+                class="form-control"
+                id="age"
+                name="age"
+                placeholder="Enter the age "
+                formControlName="age"
+              />
+
+              <label for="name" class="form-label">Email *</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter the email "
+                id="email"
+                name="email"
+                formControlName="email"
+              />
+              <div
+                *ngIf="isFormDirty && !isFormValid"
+                class="alert alert-danger mt-3 mb-4"
+              >
+                <li *ngIf="isNameDirty && !isNameValid">
+                  Please enter a valid name
+                </li>
+                <li *ngIf="isEmailDirty && !isEmailValid">
+                  Please enter a valid email
+                </li>
+                <li *ngIf="isAgeDirty && !isAgeValid">
+                  Please enter age between (13 and 30)
+                </li>
+              </div>
+
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-primary btn"
+                  [attr.data-bs-dismiss]="isFormValid ? 'modal' : null"
+                  (click)="addNewStudent()"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
