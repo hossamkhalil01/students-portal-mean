@@ -10,6 +10,7 @@ import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StudentsService } from './services/students.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ShowStudentComponent } from './show-student/show-student.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     AddStudentComponent,
     DisplayStudentsComponent,
     SearchComponent,
+    ShowStudentComponent,
   ],
   imports: [
     BrowserModule,

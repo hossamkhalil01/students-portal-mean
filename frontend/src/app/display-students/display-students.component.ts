@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import Student from '../models/student';
 
 @Component({
@@ -11,11 +12,11 @@ export class DisplayStudentsComponent implements OnInit {
 
   searchKey: string = '';
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   showStudent(student: Student) {
-    // this.updatedTodo.emit(todo);
+    this.router.navigate([`students/${student._id}`]);
   }
 }

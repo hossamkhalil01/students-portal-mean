@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { ShowStudentComponent } from './show-student/show-student.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   // { path: 'profile/:id', component: ProfileComponent },
-  // { path: 'user-details', component: UserDetailsComponent },
+  { path: 'students/:id', component: ShowStudentComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '**', component: PageNotFoundComponent },
 ];

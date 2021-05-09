@@ -34,7 +34,7 @@ export class AddStudentComponent implements OnInit {
   ) {}
 
   ngOnDestroy(): void {
-    this.subscriber.unsubscribe();
+    if (this.subscriber) this.subscriber.unsubscribe();
   }
 
   ngOnInit(): void {}

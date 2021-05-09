@@ -1,5 +1,5 @@
 export default interface Student {
-  id: String;
+  _id: String;
   name: String;
   age: Number;
   email: String;
