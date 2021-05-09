@@ -19,9 +19,8 @@ Router.get("/:id", async (req, res) => {
 });
 
 Router.post("/", async (req, res) => {
-  const studentData = req.body;
   try {
-    const newStudent = await Student.create(studentData);
+    const newStudent = await Student.create(req.body);
     return res.send({ data: newStudent }).status("200");
   } catch (err) {
     return res.send({ data: null, message: "validation error" }.status("412"));

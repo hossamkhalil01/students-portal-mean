@@ -1,1 +1,23 @@
-<p>display-students works!</p>
+<hr class="mt-5" />
+
+<div class="row justify-content-center me-0">
+  <div class="col-6 border border-dark p-3">
+    <h4 class="lead text-center text-dark mb-3">
+      {{ searchKey === "" ? "All Students" : searchKey + " results" }}
+    </h4>
+
+    <div *ngIf="studentsList.length === 0; else list">
+      <h4 class="alert alert-info text-center">No results are found!</h4>
+    </div>
+
+    <ng-template #list>
+      <div
+        *ngFor="let student of studentsList"
+        class="text-light mb-2 p-2 student-card"
+        (click)="showStudent(student)"
+      >
+        <h4>{{ student.name }}</h4>
+      </div>
+    </ng-template>
+  </div>
+</div>

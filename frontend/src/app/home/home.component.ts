@@ -1,16 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-
+import Student from '../models/student';
+import { StudentsService } from '../services/students.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  students: Array<Student> = [];
+  searchKey: String = '';
+  subscriber: any;
 
-  ngOnInit(): void {}
+  constructor(private studentsService: StudentsService) {}
 
-  addNewStudent(newStudent: { name: string; age: number; email: string }) {
-    console.log(newStudent);
+  ngOnInit(): void {
+    this.loadStudentsList();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriber.unsubscribe();
+  }
+
+  loadStudentsList() {
+    // get the updated list
+    this.subscriber = this.studentsService
+      .getStudents({ params: this.searchKey })
+      .subscribe((res) => (this.students = res.data));
+  }
+
+  handleNewStudent(newStudent: Student) {
+    this.loadStudentsList();
   }
 }

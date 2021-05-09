@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { StudentsService } from 'src/app/services/students.service';
+import Student from '../models/student';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'add-student',
@@ -21,20 +24,31 @@ export class AddStudentComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  @Output() newStudent: EventEmitter<{
-    name: string;
-    age: number;
-    email: string;
-  }> = new EventEmitter();
+  @Output() newStudent: EventEmitter<Student> = new EventEmitter();
 
-  constructor() {}
+  subscriber: any;
+
+  constructor(
+    private studentsService: StudentsService,
+    private router: Router
+  ) {}
+
+  ngOnDestroy(): void {
+    this.subscriber.unsubscribe();
+  }
 
   ngOnInit(): void {}
 
   addNewStudent() {
     if (this.studentForm.valid) {
-      this.newStudent.emit(this.studentForm.value);
-      this.studentForm.setValue({ name: '', age: '', email: '' });
+      this.subscriber = this.studentsService
+        .addStudent(this.studentForm.value)
+        .subscribe((res) => this.newStudent.emit(res.data));
+
+      this.studentForm.reset();
+
+      // redirect to home
+      this.router.navigate(['home']);
     }
   }
 

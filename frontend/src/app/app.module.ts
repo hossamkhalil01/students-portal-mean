@@ -8,7 +8,8 @@ import { AddStudentComponent } from './add-student/add-student.component';
 import { DisplayStudentsComponent } from './display-students/display-students.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { StudentsService } from './services/students.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,8 +18,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DisplayStudentsComponent,
     SearchComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
+  providers: [StudentsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

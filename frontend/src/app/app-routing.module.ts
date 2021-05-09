@@ -5,7 +5,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   // { path: 'profile/:id', component: ProfileComponent },
   // { path: 'user-details', component: UserDetailsComponent },
-  // { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '**', component: PageNotFoundComponent },
 ];
 
