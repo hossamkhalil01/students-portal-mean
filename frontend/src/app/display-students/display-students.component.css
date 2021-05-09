@@ -1,4 +1,17 @@
-.student-card {
-  background-color: steelblue;
+/*==================================================
+Nearby People CSS
+==================================================*/
+
+.profile-link {
+  color: blue;
   cursor: pointer;
+}
+
+.avatar {
+  height: 100%;
+  width: 100%;
+  min-height: 50px;
+  min-width: 50px;
+  max-width: 20%;
+  border-radius: 50%;
 }
