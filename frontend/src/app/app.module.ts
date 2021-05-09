@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StudentsService } from './services/students.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowStudentComponent } from './show-student/show-student.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { ShowStudentComponent } from './show-student/show-student.component';
     DisplayStudentsComponent,
     SearchComponent,
     ShowStudentComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

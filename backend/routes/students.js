@@ -5,13 +5,13 @@ const Router = express.Router();
 // return all results
 Router.get("/", async (req, res) => {
   const students = await Student.find();
-  return res.send({ data: students });
+  return res.send({ data: students }).status("200");
 });
 
 // return student results
 Router.get("/:id", async (req, res) => {
   try {
-    const student = await Student.find(req.params.id);
+    const student = await Student.findById(req.params.id);
     return res.send({ data: student }).status("200");
   } catch (err) {
     return returnErrorNotFound(res);
@@ -23,7 +23,7 @@ Router.post("/", async (req, res) => {
     const newStudent = await Student.create(req.body);
     return res.send({ data: newStudent }).status("200");
   } catch (err) {
-    return res.send({ data: null, message: "validation error" }.status("412"));
+    return res.send({ data: null, message: "validation error" }).status("412");
   }
 });
 

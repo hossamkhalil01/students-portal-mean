@@ -15,11 +15,15 @@ export class StudentsService {
     return this.client.get(this.studentsBaseUrl, { params });
   }
 
-  getStudent(id: String) {
+  getStudent(id: String): Observable<any> {
     return this.client.get(this.studentsBaseUrl + '/' + id);
   }
 
   addStudent(student: Student): Observable<any> {
     return this.client.post<Student>(this.studentsBaseUrl, student);
+  }
+
+  deleteStudent(id: String): Observable<any> {
+    return this.client.delete(this.studentsBaseUrl + '/' + id);
   }
 }
