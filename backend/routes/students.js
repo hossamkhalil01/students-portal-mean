@@ -4,7 +4,15 @@ const Router = express.Router();
 
 // return all results
 Router.get("/", async (req, res) => {
-  const students = await Student.find();
+
+  const searchKey = req.query.searchKey;
+  
+  let searchObj = {};
+  
+  // create search object 
+  if (searchKey) searchObj = {"name":{"$regex":searchKey,"$options":"i"}}
+  
+  const students = await Student.find(searchObj);
   return res.send({ data: students }).status("200");
 });
 

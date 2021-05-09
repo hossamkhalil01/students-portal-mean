@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   loadStudentsList() {
     // get the updated list
     this.subscriber = this.studentsService
-      .getStudents({ params: this.searchKey })
+      .getStudents({ searchKey: this.searchKey })
       .subscribe((res) => {
         if (!res.data) return (this.errorMsg = 'Email Already exists');
         return (this.students = res.data);

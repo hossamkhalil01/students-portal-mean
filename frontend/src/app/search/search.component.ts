@@ -15,7 +15,6 @@ export class SearchComponent implements OnInit {
 
   handleUserSearch(event: any): void {
     this.searchKey = event.target.value;
-    if (this.searchKey === '') return;
     this.onUserInput.emit(this.searchKey);
   }
 }
