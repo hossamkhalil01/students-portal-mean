@@ -18,14 +18,14 @@
           *ngFor="let student of studentsList"
         >
           <div class="row">
-            <div class="col-1">
+            <div class="col-2 col-md-1">
               <img
                 src="https://source.unsplash.com/random"
                 alt="avatar"
                 class="avatar"
               />
             </div>
-            <div class="col-1">
+            <div class="ms-3 col-5">
               <h6>
                 <p (click)="showStudent(student)" class="profile-link">
                   {{ student.name }}

@@ -35,4 +35,9 @@ export class HomeComponent implements OnInit {
   handleNewStudent(newStudent: Student) {
     this.loadStudentsList();
   }
+
+  handleUserSearch(key: String) {
+    this.searchKey = key;
+    this.loadStudentsList();
+  }
 }

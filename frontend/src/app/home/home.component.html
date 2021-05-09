@@ -1,2 +1,11 @@
 <add-student (newStudent)="handleNewStudent($event)"></add-student>
-<display-students [studentsList]="students"></display-students>
+<hr class="mt-5 mb-3" />
+
+<div class="container-fluid row justify-content-center">
+  <search
+    class="col-10 col-md-4 mt-4"
+    (onUserInput)="handleUserSearch($event)"
+  ></search>
+
+  <display-students [studentsList]="students"></display-students>
+</div>

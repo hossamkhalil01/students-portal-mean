@@ -1,1 +1,8 @@
-<p>search works!</p>
+<input
+  class="form-control"
+  type="search"
+  placeholder="Type the student's name"
+  aria-label="Search"
+  (value)="(searchKey)"
+  (keyup)="handleUserSearch($event)"
+/>
