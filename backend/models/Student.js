@@ -8,7 +8,7 @@ const studentSchema = new mongoose.Schema({
     match: /^[a-z ,.'-]+$/,
   },
   age: { type: Number, required: true, max: 80 },
-  email: { type: String, match: /.*@.*\..*/, unique: true },
+  email: { type: String, match: /.*@.*\..*/},
 });
 
 const StudentModel = mongoose.model("User", studentSchema);

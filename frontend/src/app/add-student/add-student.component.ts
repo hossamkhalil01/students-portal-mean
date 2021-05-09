@@ -43,7 +43,9 @@ export class AddStudentComponent implements OnInit {
     if (this.studentForm.valid) {
       this.subscriber = this.studentsService
         .addStudent(this.studentForm.value)
-        .subscribe((res) => this.newStudent.emit(res.data));
+        .subscribe((res) => {
+          this.newStudent.emit(res.data);
+        });
 
       this.studentForm.reset();
 

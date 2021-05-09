@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
   students: Array<Student> = [];
   searchKey: String = '';
   subscriber: any;
+  errorMsg: string = '';
 
   constructor(private studentsService: StudentsService) {}
 
@@ -25,7 +26,10 @@ export class HomeComponent implements OnInit {
     // get the updated list
     this.subscriber = this.studentsService
       .getStudents({ params: this.searchKey })
-      .subscribe((res) => (this.students = res.data));
+      .subscribe((res) => {
+        if (!res.data) return (this.errorMsg = 'Email Already exists');
+        return (this.students = res.data);
+      });
   }
 
   handleNewStudent(newStudent: Student) {

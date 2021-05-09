@@ -26,4 +26,7 @@ export class StudentsService {
   deleteStudent(id: String): Observable<any> {
     return this.client.delete(this.studentsBaseUrl + '/' + id);
   }
+  updateStudent(id: String, student: Student): Observable<any> {
+    return this.client.patch<Student>(this.studentsBaseUrl + '/' + id, student);
+  }
 }
